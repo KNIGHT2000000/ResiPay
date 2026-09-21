@@ -6,7 +6,7 @@ ResiPay is built in 8 vertical MVP slices, moving methodically from core payment
 
 ## Phases
 
-- [ ] **Phase 1: Payment Core Slice (Domain, State Machine & Deterministic Provider Simulator)** - Core payment lifecycle, state transition validator, Flyway migrations, and deterministic downstream mock with failure injection.
+- [x] **Phase 1: Payment Core Slice (Domain, State Machine & Deterministic Provider Simulator)** - Core payment lifecycle, state transition validator, Flyway migrations, and deterministic downstream mock with failure injection.
 - [ ] **Phase 2: Persistent Idempotency Slice** - Persistent request deduplication, payload hashing, atomic locking, and response replay under high concurrency.
 - [ ] **Phase 3: Transactional Outbox & Event-Driven Kafka Slice** - Dual-write-proof transactional outbox, polling publisher with SKIP LOCKED, versioned Kafka events, and idempotent consumers.
 - [ ] **Phase 4: Immutable Double-Entry Ledger Slice** - Double-entry chart of accounts, immutable postings, integer minor unit arithmetic, invariant verification, and compensating reversals.
@@ -35,15 +35,15 @@ ResiPay is built in 8 vertical MVP slices, moving methodically from core payment
 Plans:
 **Wave 1**
 
-- [ ] 01-01: Domain entities, Flyway database schema, and payment repository setup
+- [x] 01-01: Domain entities, Flyway database schema, and payment repository setup
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 01-02: Formal payment state machine and transition validator with UNKNOWN state handling
+- [x] 01-02: Formal payment state machine and transition validator with UNKNOWN state handling
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 01-03: Deterministic payment provider simulator with configurable failure modes and state storage
+- [x] 01-03: Deterministic payment provider simulator with configurable failure modes and state storage
 
 ### Phase 2: Persistent Idempotency Slice
 
@@ -197,7 +197,7 @@ Phases execute in numeric order: 1 ➔ 2 ➔ 3 ➔ 4 ➔ 5 ➔ 6 ➔ 7 ➔ 8
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Payment Core Slice | 0/3 | Not started | - |
+| 1. Payment Core Slice | 3/3 | Complete | 2026-09-21 |
 | 2. Persistent Idempotency Slice | 0/2 | Not started | - |
 | 3. Transactional Outbox & Event-Driven Kafka Slice | 0/3 | Not started | - |
 | 4. Immutable Double-Entry Ledger Slice | 0/3 | Not started | - |

@@ -9,9 +9,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Core Payment State Machine & Invariants (STATE)
 
-- [ ] **STATE-01**: Payment entity supporting explicit states (CREATED, VALIDATED, PROCESSING, AUTHORIZED, COMPLETED, FAILED, DECLINED, UNKNOWN, CANCELLED, REFUND_PENDING, REFUNDED)
-- [ ] **STATE-02**: Formal state transition guard rejecting invalid status transitions (e.g., FAILED -> COMPLETED or COMPLETED -> PROCESSING)
-- [ ] **STATE-03**: First-class UNKNOWN state handling for ambiguous timeouts where downstream provider outcome is unconfirmed
+- [x] **STATE-01**: Payment entity supporting explicit states (CREATED, VALIDATED, PROCESSING, AUTHORIZED, COMPLETED, FAILED, DECLINED, UNKNOWN, CANCELLED, REFUND_PENDING, REFUNDED)
+- [x] **STATE-02**: Formal state transition guard rejecting invalid status transitions (e.g., FAILED -> COMPLETED or COMPLETED -> PROCESSING)
+- [x] **STATE-03**: First-class UNKNOWN state handling for ambiguous timeouts where downstream provider outcome is unconfirmed
 
 ### Persistent Idempotency (IDEM)
 
@@ -35,10 +35,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Deterministic Payment Provider Simulator (SIM)
 
-- [ ] **SIM-01**: Deterministic provider mock supporting configurable outcomes: SUCCESS, DECLINED, HTTP 500, HTTP 429, CONNECTION_RESET
-- [ ] **SIM-02**: Ambiguous failure simulation: TIMEOUT_BEFORE_PROCESSING vs TIMEOUT_AFTER_PROCESSING
-- [ ] **SIM-03**: Asynchronous callback simulation: DELAYED_RESPONSE, DUPLICATE_CALLBACK, OUT_OF_ORDER_CALLBACK
-- [ ] **SIM-04**: Provider internal transaction state store enabling ground-truth reconciliation verification
+- [x] **SIM-01**: Deterministic provider mock supporting configurable outcomes: SUCCESS, DECLINED, HTTP 500, HTTP 429, CONNECTION_RESET
+- [x] **SIM-02**: Ambiguous failure simulation: TIMEOUT_BEFORE_PROCESSING vs TIMEOUT_AFTER_PROCESSING
+- [x] **SIM-03**: Asynchronous callback simulation: DELAYED_RESPONSE, DUPLICATE_CALLBACK, OUT_OF_ORDER_CALLBACK
+- [x] **SIM-04**: Provider internal transaction state store enabling ground-truth reconciliation verification
 
 ### Context-Aware Retry Controller & Resilience (RETR)
 
@@ -78,7 +78,7 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Production Infrastructure & Operations (OPS)
 
 - [ ] **OPS-01**: Docker Compose environment orchestrating App, PostgreSQL, Kafka, Redis, Prometheus, and Grafana
-- [ ] **OPS-02**: Flyway version-controlled migration scripts for all database tables and constraints
+- [x] **OPS-02**: Flyway version-controlled migration scripts for all database tables and constraints
 - [ ] **OPS-03**: OpenAPI (Swagger) documentation for all client and operational endpoints
 - [ ] **OPS-04**: Production-style documentation: Architecture Decision Records (ADRs), Threat Model, and Runbooks
 
@@ -104,14 +104,14 @@ Requirements for initial release. Each maps to roadmap phases.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| STATE-01 | Phase 1 | Pending |
-| STATE-02 | Phase 1 | Pending |
-| STATE-03 | Phase 1 | Pending |
-| SIM-01 | Phase 1 | Pending |
-| SIM-02 | Phase 1 | Pending |
-| SIM-03 | Phase 1 | Pending |
-| SIM-04 | Phase 1 | Pending |
-| OPS-02 | Phase 1 | Pending |
+| STATE-01 | Phase 1 | Complete |
+| STATE-02 | Phase 1 | Complete |
+| STATE-03 | Phase 1 | Complete |
+| SIM-01 | Phase 1 | Complete |
+| SIM-02 | Phase 1 | Complete |
+| SIM-03 | Phase 1 | Complete |
+| SIM-04 | Phase 1 | Complete |
+| OPS-02 | Phase 1 | Complete |
 | IDEM-01 | Phase 2 | Pending |
 | IDEM-02 | Phase 2 | Pending |
 | IDEM-03 | Phase 2 | Pending |

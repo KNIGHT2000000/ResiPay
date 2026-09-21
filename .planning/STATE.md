@@ -1,19 +1,18 @@
 ---
 gsd_state_version: "1.0"
-current_phase: 1
-current_phase_name: Payment Core Slice (Domain, State Machine & Deterministic Provider Simulator)
-status: executing
-stopped_at: Project initialization complete (PROJECT.md, config.json, research, REQUIREMENTS.md, ROADMAP.md, STATE.md, AGENTS.md)
-last_updated: "2026-09-21T17:58:29.411Z"
+current_phase: 2
+current_phase_name: Persistent Idempotency Slice
+status: phase_complete
+stopped_at: Phase 1 execution complete (01-01, 01-02, 01-03)
+last_updated: "2026-09-21T18:15:00.000Z"
 last_activity: 2026-09-21
-last_activity_desc: Project initialized, research completed, roadmap approved
-state_head: 07ea1accc522523d9b9ba426202f3302e57d77f1
+last_activity_desc: Phase 1 executed with PostgreSQL 18 support, 3 plans completed
 progress:
   total_phases: 8
-  completed_phases: 0
-  total_plans: 3
-  completed_plans: 0
-  percent: 0
+  completed_phases: 1
+  total_plans: 23
+  completed_plans: 3
+  percent: 13
 ---
 
 # Project State
@@ -23,30 +22,29 @@ progress:
 See: .planning/PROJECT.md (updated 2026-09-21)
 
 **Core value:** Preserving absolute financial correctness (zero duplicate financial effects, balanced double-entry ledger invariants) while safely navigating ambiguous distributed-system failures through idempotency, explicit state transitions, controlled retries, and automated reconciliation.  
-**Current focus:** Phase 1: Payment Core Slice (Domain, State Machine & Deterministic Provider Simulator)
+**Current focus:** Phase 2: Persistent Idempotency Slice
 
 ## Current Position
 
-Phase: 1 (Payment Core Slice (Domain, State Machine & Deterministic Provider Simulator)) — READY TO EXECUTE
-Plan: 0 of 3 in current phase  
-Status: Ready to execute
-Last activity: 2026-09-21 — Project initialized, research completed, roadmap approved  
+Phase: 1 of 8 (Payment Core Slice) — COMPLETE  
+Next Phase: Phase 2 (Persistent Idempotency Slice) — READY TO PLAN  
+Status: Phase 1 complete (3/3 plans executed)  
+Last activity: 2026-09-21 — Phase 1 executed with PostgreSQL 18 support, 3 plans completed  
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [██░░░░░░░░] 13%
 
 ## Performance Metrics
 
 **Velocity:**
-
-- Total plans completed: 0
-- Average duration: - min
-- Total execution time: 0.0 hours
+- Total plans completed: 3
+- Average duration: ~15 min
+- Total execution time: 0.75 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 1. Payment Core Slice | 0/3 | - | - |
+| 1. Payment Core Slice | 3/3 | 45m | 15m |
 | 2. Persistent Idempotency Slice | 0/2 | - | - |
 | 3. Transactional Outbox & Kafka | 0/3 | - | - |
 | 4. Immutable Double-Entry Ledger | 0/3 | - | - |
@@ -60,12 +58,14 @@ Progress: [░░░░░░░░░░] 0%
 ### Decisions
 
 Decisions are logged in PROJECT.md Key Decisions table:
-
 - [Initialization]: Modular Monolith architecture chosen for domain boundary clarity and operational simplicity
 - [Initialization]: First-class UNKNOWN payment state required to avoid false failures on ambiguous network timeouts
 - [Initialization]: Immutable double-entry ledger using integer minor units (zero floating-point math)
 - [Initialization]: Transactional Outbox pattern selected for dual-write elimination with Kafka
-- [Initialization]: Empirical research approach with Baseline vs Proposed comparison
+- [Phase 1]: Java 21 LTS with Spring Boot 3.3.3 configured for local PostgreSQL 18 on port 5432
+- [Phase 1]: Flyway V1 schema migration enforces check constraints on positive amounts and 11 valid status states
+- [Phase 1]: Formal state machine transition matrix enforces valid transitions and routes network timeouts to UNKNOWN
+- [Phase 1]: Deterministic Provider Simulator supports 7 outcomes with pre/post-processing timeouts and ground-truth audit store
 
 ### Pending Todos
 
@@ -84,6 +84,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-09-21 23:20  
-Stopped at: Project initialization complete (PROJECT.md, config.json, research, REQUIREMENTS.md, ROADMAP.md, STATE.md, AGENTS.md)  
+Last session: 2026-09-21 23:42  
+Stopped at: Phase 1 execution complete; ready to plan Phase 2 (Persistent Idempotency Slice)  
 Resume file: None  

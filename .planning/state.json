@@ -1,0 +1,53 @@
+{
+  "contract": "1.0.0",
+  "flavor": "core",
+  "milestone": null,
+  "phases": [
+    {
+      "number": "1",
+      "name": "Payment Core Slice",
+      "status": "pending"
+    },
+    {
+      "number": "2",
+      "name": "Persistent Idempotency Slice",
+      "status": "pending"
+    },
+    {
+      "number": "3",
+      "name": "Transactional Outbox & Event-Driven Kafka Slice",
+      "status": "pending"
+    },
+    {
+      "number": "4",
+      "name": "Immutable Double-Entry Ledger Slice",
+      "status": "pending"
+    },
+    {
+      "number": "5",
+      "name": "Context-Aware Resilience & Retry Controller Slice",
+      "status": "pending"
+    },
+    {
+      "number": "6",
+      "name": "Automated Reconciliation & Idempotent Webhook Slice",
+      "status": "pending"
+    },
+    {
+      "number": "7",
+      "name": "End-to-End Observability, Security & Production Packaging",
+      "status": "pending"
+    },
+    {
+      "number": "8",
+      "name": "Empirical Distributed Systems Research & Comparative Benchmarks",
+      "status": "pending"
+    }
+  ],
+  "next": {
+    "command": "/gsd-progress --next",
+    "label": "Advance to the next step",
+    "reason": "Phase 1 of 8 · 0% · executing"
+  },
+  "updated_at": "2026-09-21T17:58:29.572Z"
+}

@@ -27,3 +27,6 @@ out/
 *.log
 .DS_Store
 Thumbs.db
+
+# GSD Planning (local only)
+.planning/

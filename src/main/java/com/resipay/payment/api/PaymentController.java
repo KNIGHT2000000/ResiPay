@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.web.bind.annotation.RequestHeader;
+
 import java.util.UUID;
 
 @RestController
@@ -26,7 +28,13 @@ public class PaymentController {
     private final PaymentService paymentService;
 
     @PostMapping
-    public ResponseEntity<PaymentResponse> createPayment(@Valid @RequestBody CreatePaymentRequest request) {
+    public ResponseEntity<PaymentResponse> createPayment(
+            @RequestHeader(value = "Idempotency-Key", required = false) String idempotencyKeyHeader,
+            @Valid @RequestBody CreatePaymentRequest request
+    ) {
+        if (request.getIdempotencyKey() == null && idempotencyKeyHeader != null) {
+            request.setIdempotencyKey(idempotencyKeyHeader);
+        }
         PaymentResponse response = paymentService.createPayment(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

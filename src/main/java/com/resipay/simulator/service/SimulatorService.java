@@ -23,7 +23,7 @@ public class SimulatorService {
 
     private final ProviderTransactionRepository providerTransactionRepository;
 
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW, noRollbackFor = ResponseStatusException.class)
     public SimulatorChargeResponse processCharge(
             SimulatorChargeRequest request,
             SimulationOutcome outcome,

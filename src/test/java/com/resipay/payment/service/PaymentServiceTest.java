@@ -31,14 +31,18 @@ class PaymentServiceTest {
     @Mock
     private PaymentRepository paymentRepository;
 
+    @Mock
+    private com.resipay.outbox.service.OutboxStagingService outboxStagingService;
+
     private PaymentStateMachine stateMachine;
     private PaymentService paymentService;
 
     @BeforeEach
     void setUp() {
         stateMachine = new PaymentStateMachine();
-        paymentService = new PaymentService(paymentRepository, stateMachine);
+        paymentService = new PaymentService(paymentRepository, stateMachine, outboxStagingService);
     }
+
 
     @Test
     @DisplayName("createPayment initializes payment in CREATED status")

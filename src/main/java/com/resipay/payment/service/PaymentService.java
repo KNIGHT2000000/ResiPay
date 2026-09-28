@@ -22,6 +22,7 @@ public class PaymentService {
 
     private final PaymentRepository paymentRepository;
     private final PaymentStateMachine stateMachine;
+    private final com.resipay.outbox.service.OutboxStagingService outboxStagingService;
 
     @Transactional
     public PaymentResponse createPayment(CreatePaymentRequest request) {
@@ -37,6 +38,16 @@ public class PaymentService {
                 .build();
 
         Payment saved = paymentRepository.save(payment);
+
+        com.resipay.outbox.event.PaymentCreatedEvent event = com.resipay.outbox.event.PaymentCreatedEvent.builder()
+                .paymentId(saved.getId())
+                .customerId(saved.getCustomerId())
+                .amountCents(saved.getAmountCents())
+                .currency(saved.getCurrency())
+                .idempotencyKey(saved.getIdempotencyKey())
+                .build();
+        outboxStagingService.stageEvent("PAYMENT", saved.getId(), event);
+
         return PaymentResponse.from(saved);
     }
 
@@ -57,6 +68,16 @@ public class PaymentService {
         }
 
         Payment updated = paymentRepository.save(payment);
+
+        com.resipay.outbox.event.PaymentTransitionedEvent event = com.resipay.outbox.event.PaymentTransitionedEvent.builder()
+                .paymentId(updated.getId())
+                .previousStatus(currentStatus.name())
+                .targetStatus(targetStatus.name())
+                .errorCode(errorCode)
+                .errorMessage(errorMessage)
+                .build();
+        outboxStagingService.stageEvent("PAYMENT", updated.getId(), event);
+
         return PaymentResponse.from(updated);
     }
 
@@ -74,8 +95,19 @@ public class PaymentService {
         payment.setErrorMessage(detailMessage != null ? detailMessage : "Provider call timed out without response acknowledgement");
 
         Payment updated = paymentRepository.save(payment);
+
+        com.resipay.outbox.event.PaymentTransitionedEvent event = com.resipay.outbox.event.PaymentTransitionedEvent.builder()
+                .paymentId(updated.getId())
+                .previousStatus(currentStatus.name())
+                .targetStatus(PaymentStatus.UNKNOWN.name())
+                .errorCode("DOWNSTREAM_TIMEOUT_AMBIGUOUS")
+                .errorMessage(detailMessage)
+                .build();
+        outboxStagingService.stageEvent("PAYMENT", updated.getId(), event);
+
         return PaymentResponse.from(updated);
     }
+
 
     @Transactional(readOnly = true)
     public PaymentResponse getPayment(UUID paymentId) {

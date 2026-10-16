@@ -5,7 +5,7 @@ spring:
   datasource:
     url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/resipay}
     username: ${SPRING_DATASOURCE_USERNAME:postgres}
-    password: ${SPRING_DATASOURCE_PASSWORD:Postgres@123}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 20
@@ -70,7 +70,7 @@ management:
       show-details: always
 
 gemini:
-  api-key: ${GEMINI_API_KEY:AQ.Ab8RN6JB-9SszGDCxEE9jA7h1qFujdEKRhDpUPNJXbya1XQGVQ}
+  api-key: ${GEMINI_API_KEY:yourapikey}
   model: ${GEMINI_MODEL:gemini-3.8-flash}
   timeout-ms: ${GEMINI_TIMEOUT_MS:30000}
 

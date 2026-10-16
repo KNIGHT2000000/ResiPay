@@ -22,6 +22,7 @@ class PaymentStateMachineTest {
     @ParameterizedTest(name = "Valid transition from {0} to {1}")
     @CsvSource({
             "CREATED, VALIDATED",
+            "CREATED, PROCESSING",
             "CREATED, FAILED",
             "CREATED, CANCELLED",
             "VALIDATED, PROCESSING",

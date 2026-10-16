@@ -21,6 +21,7 @@ public class PaymentStateMachine {
 
         transitions.put(PaymentStatus.CREATED, EnumSet.of(
                 PaymentStatus.VALIDATED,
+                PaymentStatus.PROCESSING,
                 PaymentStatus.FAILED,
                 PaymentStatus.CANCELLED
         ));

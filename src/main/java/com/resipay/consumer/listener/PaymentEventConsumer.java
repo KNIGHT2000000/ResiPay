@@ -22,6 +22,7 @@ public class PaymentEventConsumer {
 
     private final IdempotentConsumerHandler idempotentConsumerHandler;
     private final ObjectMapper objectMapper;
+    private final com.resipay.ledger.service.PaymentLedgerPostingHandler paymentLedgerPostingHandler;
 
     @Getter
     private final AtomicInteger processedCount = new AtomicInteger(0);
@@ -29,7 +30,11 @@ public class PaymentEventConsumer {
     @Getter
     private final AtomicInteger duplicateSkippedCount = new AtomicInteger(0);
 
-    @KafkaListener(topics = KafkaTopicConfig.PAYMENT_EVENTS_TOPIC, groupId = CONSUMER_GROUP)
+    @KafkaListener(
+            topics = KafkaTopicConfig.PAYMENT_EVENTS_TOPIC,
+            groupId = CONSUMER_GROUP,
+            autoStartup = "${resipay.kafka.listener.auto-startup:false}"
+    )
     public void onPaymentEvent(String payload) {
         try {
             JsonNode root = objectMapper.readTree(payload);
@@ -50,8 +55,8 @@ public class PaymentEventConsumer {
                     paymentIdStr,
                     CONSUMER_GROUP,
                     () -> {
-                        // Core business consumer logic (e.g. downstream ledger dispatch or metrics)
-                        log.info("Consumer executing downstream handler for payment: {}", paymentIdStr);
+                        log.info("Consumer executing downstream ledger handler for payment: {}", paymentIdStr);
+                        paymentLedgerPostingHandler.handlePaymentEvent(root);
                     }
             );
 

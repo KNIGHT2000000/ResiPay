@@ -12,11 +12,11 @@ public abstract class AbstractPostgresIntegrationTest {
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {
         String url = System.getProperty("spring.datasource.url",
-                System.getenv().getOrDefault("SPRING_DATASOURCE_URL", "jdbc:postgresql://localhost:5433/resipay"));
+                System.getenv().getOrDefault("SPRING_DATASOURCE_URL", "jdbc:postgresql://localhost:5432/resipay"));
         String username = System.getProperty("spring.datasource.username",
                 System.getenv().getOrDefault("SPRING_DATASOURCE_USERNAME", "postgres"));
         String password = System.getProperty("spring.datasource.password",
-                System.getenv().getOrDefault("SPRING_DATASOURCE_PASSWORD", "postgres"));
+                System.getenv().getOrDefault("SPRING_DATASOURCE_PASSWORD", "Postgres@123"));
 
         registry.add("spring.datasource.url", () -> url);
         registry.add("spring.datasource.username", () -> username);

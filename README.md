@@ -31,7 +31,7 @@ ResiPay utilizes **synthetic financial data**, a **deterministic provider simula
 
 ---
 
-## 🖥️ Interactive Web Application (`http://localhost:8080/`)
+## 🖥️ Interactive Web Application 
 
 ResiPay includes a 5-tab dark-mode web application:
 
@@ -84,7 +84,7 @@ python scripts/generate_charts.py
 | **End-to-End Success Rate** | $82.0\%$ | $98.0\%$ | **$+16.0\%$ higher** |
 | **Double-Entry Ledger** | Asymmetric debits | $100\%$ Balanced | Invariant Maintained |
 
-See [scripts/RESEARCH_FINDINGS.md](scripts/RESEARCH_FINDINGS.md) for the full formal research report.
+
 
 ---
 
